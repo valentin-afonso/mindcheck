@@ -7,7 +7,32 @@ type Todo = {
   date: Date;
 };
 
-let todos: Todo[] = [];
+let todos: Todo[] = [
+  {
+    id: "145245",
+    title: "my first todo",
+    desc: "this is a description...",
+    order: 1,
+    status: 1,
+    date: new Date(),
+  },
+  {
+    id: "1452487",
+    title: "my second todo",
+    desc: "this is a description...",
+    order: 2,
+    status: 1,
+    date: new Date(),
+  },
+  {
+    id: "1452149",
+    title: "my third todo",
+    desc: "this is a description...",
+    order: 3,
+    status: 1,
+    date: new Date(),
+  },
+];
 
 // handlers
 export const getTodos = () => todos;
