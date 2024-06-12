@@ -12,7 +12,7 @@ import SearchBar from "@/app/ui/SearchBar";
 import { Todo } from "@/app/model/TodoModel";
 
 async function getData() {
-  const res = await fetch("/api/todos", {
+  const res = await fetch("api/todos", {
     method: "GET",
   });
 
