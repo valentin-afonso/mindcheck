@@ -17,8 +17,8 @@ export async function PUT(request: Request, context: any) {
   try {
     const { params } = context;
     const id = params.todoId;
-    const { title, desc, order, status } = await request.json();
-    updateTodo(id, title, desc, order, status);
+    const { title, desc, order, status, important } = await request.json();
+    updateTodo(id, title, desc, order, status, important);
     return Response.json("toto updated with success", { status: 200 });
   } catch (err) {
     return Response.json({ err }, { status: 500 });

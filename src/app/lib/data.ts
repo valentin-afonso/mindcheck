@@ -1,3 +1,6 @@
+import { Todo } from "@/app/model/TodoModel";
+
+/*
 type Todo = {
   id: string;
   title: string;
@@ -6,6 +9,7 @@ type Todo = {
   status: number;
   date: Date;
 };
+*/
 
 let todos: Todo[] = [
   {
@@ -14,6 +18,7 @@ let todos: Todo[] = [
     desc: "this is a description...",
     order: 1,
     status: 1,
+    important: true,
     date: new Date(),
   },
   {
@@ -22,6 +27,7 @@ let todos: Todo[] = [
     desc: "this is a description...",
     order: 2,
     status: 1,
+    important: true,
     date: new Date(),
   },
   {
@@ -30,6 +36,25 @@ let todos: Todo[] = [
     desc: "this is a description...",
     order: 3,
     status: 1,
+    important: true,
+    date: new Date(),
+  },
+  {
+    id: "1452144",
+    title: "my fourth todo",
+    desc: "this is a description...",
+    order: 3,
+    status: 1,
+    important: false,
+    date: new Date(),
+  },
+  {
+    id: "1414149",
+    title: "my fifth todo",
+    desc: "this is a description...",
+    order: 3,
+    status: 1,
+    important: false,
     date: new Date(),
   },
 ];
@@ -54,7 +79,8 @@ export const updateTodo = (
   title: string,
   desc: string,
   order: number,
-  status: number
+  status: number,
+  important: boolean
 ) => {
   const todo = todos.find((todo) => todo.id === id.toString());
 
@@ -63,6 +89,7 @@ export const updateTodo = (
     todo.desc = desc;
     todo.order = order;
     todo.status = status;
+    todo.important = important;
   } else {
     throw new Error("No Todo found");
   }
