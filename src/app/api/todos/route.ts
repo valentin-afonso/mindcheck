@@ -15,16 +15,16 @@ export async function POST(request: Request) {
   const { title, desc, order, status, important } = await request.json();
   try {
     const todo = {
+      id: Date.now().toString(),
       title,
       desc,
       order,
       status,
       important,
       date: new Date(),
-      id: Date.now().toString(),
     };
     addTodo(todo);
-    return new Response(`todo create with success:  ${todo}`, {
+    return Response.json("todo create with success", {
       status: 201,
     });
   } catch (err) {

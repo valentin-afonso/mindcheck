@@ -14,6 +14,7 @@ import { Todo } from "@/app/model/TodoModel";
 async function getData() {
   const res = await fetch("https://mindcheck-afso.vercel.app/api/todos", {
     method: "GET",
+    next: { tags: ["collection"] },
   });
 
   if (!res.ok) {
