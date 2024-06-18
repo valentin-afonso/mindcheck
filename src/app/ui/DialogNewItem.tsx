@@ -10,17 +10,26 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
 import { createTodo } from "@/app/actions";
 
-export default function DialogNewItem() {
+export default function DialogNewItem({ onCreate }: any) {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    await createTodo(formData); // Assuming createTodoServer is the server action
+
+    if (onCreate) {
+      onCreate(); // Call the onCreate callback to refresh data
+    }
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline">Add</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <form action={createTodo}>
+        <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>New task</DialogTitle>
             <DialogDescription>
@@ -42,7 +51,9 @@ export default function DialogNewItem() {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
+            <DialogTrigger asChild>
+              <Button type="submit">Save changes</Button>
+            </DialogTrigger>
           </DialogFooter>
         </form>
       </DialogContent>

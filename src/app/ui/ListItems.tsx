@@ -10,6 +10,7 @@ import GridLayout from "@/app/ui/GridLayout";
 import Item from "@/app/ui/Item";
 import SearchBar from "@/app/ui/SearchBar";
 import { Todo } from "@/app/model/TodoModel";
+import ListItemsClient from "@/app/ui/ListItemsClient";
 
 async function getData() {
   const res = await fetch("https://mindcheck-afso.vercel.app/api/todos", {
@@ -28,35 +29,7 @@ export default async function ListItems() {
   const data = await getData();
   return (
     <GridLayout size="boxed" additional_class="">
-      <Command>
-        <CommandList>
-          <CommandEmpty>No tasks found.</CommandEmpty>
-          <CommandGroup heading="Important">
-            {data.todos
-              .filter((item: Todo) => item.important)
-              .map((item: Todo) => (
-                <div key={item.id}>
-                  <CommandItem>
-                    <Item item={item} />
-                  </CommandItem>
-                </div>
-              ))}
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Tasks">
-            {data.todos
-              .filter((item: Todo) => !item.important)
-              .map((item: Todo) => (
-                <div key={item.id}>
-                  <CommandItem>
-                    <Item item={item} />
-                  </CommandItem>
-                </div>
-              ))}
-          </CommandGroup>
-        </CommandList>
-        <SearchBar />
-      </Command>
+      <ListItemsClient initialData={data} />
     </GridLayout>
   );
 }
