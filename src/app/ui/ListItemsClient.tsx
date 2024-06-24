@@ -15,7 +15,7 @@ import SearchBar from "@/app/ui/SearchBar";
 import { Todo } from "@/app/model/TodoModel";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/todos", {
+  const res = await fetch("https://mindcheck-afso.vercel.app/api/todos", {
     method: "GET",
     next: { tags: ["collection"] },
   });
@@ -43,7 +43,7 @@ export default function ListItemsClient({ initialData }: any) {
   }, [initialData]);
 
   const refreshData = async () => {
-    const res = await fetch("http://localhost:3000/api/todos");
+    const res = await fetch("https://mindcheck-afso.vercel.app/api/todos");
     if (res.ok) {
       const updatedData = await res.json();
       setData(updatedData);
@@ -64,7 +64,7 @@ export default function ListItemsClient({ initialData }: any) {
   }, [initialData]);
 
   const refreshData = async () => {
-    const res = await fetch("http://localhost:3000/api/todos");
+    const res = await fetch("https://mindcheck-afso.vercel.app/api/todos");
     if (res.ok) {
       const updatedData = await res.json();
       if (typeof window !== "undefined") {
