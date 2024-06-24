@@ -14,7 +14,23 @@ import Item from "@/app/ui/Item";
 import SearchBar from "@/app/ui/SearchBar";
 import { Todo } from "@/app/model/TodoModel";
 
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/todos", {
+    method: "GET",
+    next: { tags: ["collection"] },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
 export default function ListItemsClient({ initialData }: any) {
+  const [data, setData] = useState(initialData);
+
+  /*
   const [data, setData] = useState(initialData);
 
   useEffect(() => {
@@ -27,11 +43,34 @@ export default function ListItemsClient({ initialData }: any) {
   }, [initialData]);
 
   const refreshData = async () => {
-    const res = await fetch("https://mindcheck-afso.vercel.app/api/todos");
+    const res = await fetch("http://localhost:3000/api/todos");
     if (res.ok) {
       const updatedData = await res.json();
       setData(updatedData);
       sessionStorage.setItem("todos", JSON.stringify(updatedData));
+    }
+  };
+  */
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const sessionData = window.localStorage.getItem("todos");
+      if (sessionData) {
+        setData(JSON.parse(sessionData));
+      } else {
+        sessionStorage.setItem("todos", JSON.stringify(initialData));
+      }
+    }
+  }, [initialData]);
+
+  const refreshData = async () => {
+    const res = await fetch("http://localhost:3000/api/todos");
+    if (res.ok) {
+      const updatedData = await res.json();
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("todos", JSON.stringify(updatedData));
+      }
+      setData(updatedData);
     }
   };
 
@@ -58,7 +97,7 @@ export default function ListItemsClient({ initialData }: any) {
               .map((item: Todo) => (
                 <div key={item.id}>
                   <CommandItem>
-                    <Item item={item} />
+                    <Item item={item} onCreate={refreshData} />
                   </CommandItem>
                 </div>
               ))}

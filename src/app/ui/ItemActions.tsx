@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import DeleteButton from "@/app/ui/DeleteButton";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Dots from "@/components/ui/svg/Dots";
 
-export default function ItemActions() {
+export default function ItemActions({ id, onCreate }: any) {
   return (
     <>
       <DropdownMenu>
@@ -29,7 +30,9 @@ export default function ItemActions() {
             <DropdownMenuItem>Edit task</DropdownMenuItem>
             <DropdownMenuItem>Mark as important</DropdownMenuItem>
             <DropdownMenuItem>Mark as completed</DropdownMenuItem>
-            <DropdownMenuItem>Delete task</DropdownMenuItem>
+            <DropdownMenuItem>
+              <DeleteButton id={id} onCreate={onCreate} />
+            </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

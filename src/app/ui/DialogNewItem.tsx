@@ -16,11 +16,9 @@ export default function DialogNewItem({ onCreate }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-
-    await createTodo(formData); // Assuming createTodoServer is the server action
-
+    await createTodo(formData);
     if (onCreate) {
-      onCreate(); // Call the onCreate callback to refresh data
+      onCreate();
     }
   };
   return (
