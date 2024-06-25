@@ -56,3 +56,37 @@ export async function deleteTodo(id: any) {
     revalidateTag("collection");
   }
 }
+
+export async function updateTodo(formData: FormData) {
+  try {
+    const id = formData.get("id");
+    const todo = {
+      title: formData.get("title"),
+      desc: formData.get("desc"),
+      order: formData.get("order"),
+      status: formData.get("status"),
+      important: formData.get("important"),
+    };
+    const response = await fetch(
+      `https://mindcheck-afso.vercel.app/api/todos/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(todo),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update todo");
+    }
+
+    const data = await response.json();
+    console.log("Todo updated:", data);
+  } catch (err) {
+    console.error("Error updating todo:", err);
+  } finally {
+    revalidateTag("collection");
+  }
+}

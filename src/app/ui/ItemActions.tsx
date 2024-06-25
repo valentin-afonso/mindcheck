@@ -1,24 +1,20 @@
-import { Button } from "@/components/ui/button";
 import DeleteButton from "@/app/ui/DeleteButton";
+import DialogEditItem from "@/app/ui/DialogEditItem";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import Dots from "@/components/ui/svg/Dots";
 
-export default function ItemActions({ id, onCreate }: any) {
+export default function ItemActions({ item, onCreate }: any) {
   return (
-    <>
+    <Dialog>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="cursor-pointer">
@@ -27,15 +23,21 @@ export default function ItemActions({ id, onCreate }: any) {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-max">
           <DropdownMenuGroup>
-            <DropdownMenuItem>Edit task</DropdownMenuItem>
+            <DialogTrigger asChild>
+              <DropdownMenuItem>Edit task</DropdownMenuItem>
+            </DialogTrigger>
             <DropdownMenuItem>Mark as important</DropdownMenuItem>
             <DropdownMenuItem>Mark as completed</DropdownMenuItem>
             <DropdownMenuItem>
-              <DeleteButton id={id} onCreate={onCreate} />
+              <DeleteButton id={item.id} onCreate={onCreate} />
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
-    </>
+
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogEditItem item={item} onCreate={onCreate} />
+      </DialogContent>
+    </Dialog>
   );
 }
