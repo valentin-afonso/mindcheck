@@ -1,63 +1,6 @@
 import { Todo } from "@/app/model/TodoModel";
 
-/*
-type Todo = {
-  id: string;
-  title: string;
-  desc: string;
-  order: number;
-  status: number;
-  date: Date;
-};
-*/
-
-let todos: Todo[] = [
-  {
-    id: "145245",
-    title: "my first todo",
-    desc: "this is a description...",
-    order: 1,
-    status: 1,
-    important: true,
-    date: new Date(),
-  },
-  {
-    id: "1452487",
-    title: "my second todo",
-    desc: "this is a description...",
-    order: 2,
-    status: 1,
-    important: true,
-    date: new Date(),
-  },
-  {
-    id: "1452149",
-    title: "my third todo",
-    desc: "this is a description...",
-    order: 3,
-    status: 1,
-    important: true,
-    date: new Date(),
-  },
-  {
-    id: "1452144",
-    title: "my fourth todo",
-    desc: "this is a description...",
-    order: 3,
-    status: 1,
-    important: false,
-    date: new Date(),
-  },
-  {
-    id: "1414149",
-    title: "my fifth todo",
-    desc: "this is a description...",
-    order: 3,
-    status: 1,
-    important: false,
-    date: new Date(),
-  },
-];
+let todos: Todo[] = [];
 
 // handlers
 export const getTodos = () => todos;

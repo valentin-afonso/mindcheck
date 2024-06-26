@@ -11,16 +11,13 @@ export async function createTodo(formData: FormData) {
       status: 1,
       important: false,
     };
-    const response = await fetch(
-      "https://mindcheck-afso.vercel.app/api/todos",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(todo),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/todos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    });
 
     if (!response.ok) {
       throw new Error("Failed to create todo");
@@ -37,12 +34,9 @@ export async function createTodo(formData: FormData) {
 
 export async function deleteTodo(id: any) {
   try {
-    const response = await fetch(
-      `https://mindcheck-afso.vercel.app/api/todos/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`http://localhost:3000/api/todos/${id}`, {
+      method: "DELETE",
+    });
 
     if (!response.ok) {
       throw new Error("Failed to delete todo");
@@ -67,16 +61,13 @@ export async function updateTodo(formData: FormData) {
       status: formData.get("status"),
       important: formData.get("important"),
     };
-    const response = await fetch(
-      `https://mindcheck-afso.vercel.app/api/todos/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(todo),
-      }
-    );
+    const response = await fetch(`http://localhost:3000/api/todos/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    });
 
     if (!response.ok) {
       throw new Error("Failed to update todo");

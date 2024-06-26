@@ -1,6 +1,7 @@
 import DeleteButton from "@/app/ui/DeleteButton";
 import DialogEditItem from "@/app/ui/DialogEditItem";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import FormImportant from "@/app/ui/FormImportant";
 
 import {
   DropdownMenu,
@@ -26,7 +27,9 @@ export default function ItemActions({ item, onCreate }: any) {
             <DialogTrigger asChild>
               <DropdownMenuItem>Edit task</DropdownMenuItem>
             </DialogTrigger>
-            <DropdownMenuItem>Mark as important</DropdownMenuItem>
+            <DropdownMenuItem>
+              <FormImportant item={item} onCreate={onCreate} />
+            </DropdownMenuItem>
             <DropdownMenuItem>Mark as completed</DropdownMenuItem>
             <DropdownMenuItem>
               <DeleteButton id={item.id} onCreate={onCreate} />

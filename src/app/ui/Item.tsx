@@ -1,4 +1,5 @@
 import StarFull from "@/components/ui/svg/StarFull";
+import StarEmpty from "@/components/ui/svg/StarEmpty";
 import ItemActions from "@/app/ui/ItemActions";
 import { Todo } from "@/app/model/TodoModel";
 
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 
 export default function Item({ item, onCreate }: any) {
+  const IconStar = item.important ? StarFull : StarEmpty;
   return (
     <Dialog>
       <div className="flex items-center justify-between w-full min-w-[450px]">
@@ -23,7 +25,7 @@ export default function Item({ item, onCreate }: any) {
           </div>
         </DialogTrigger>
         <div className="flex items-center gap-3">
-          <StarFull />
+          {IconStar && <IconStar />}
           <ItemActions item={item} onCreate={onCreate} />
         </div>
       </div>

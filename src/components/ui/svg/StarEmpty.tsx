@@ -1,10 +1,10 @@
-export default function StarFull() {
+export default function StarEmpty() {
   return (
     <>
       <svg
         width="20"
         height="20"
-        fill="black"
+        fill="none"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
