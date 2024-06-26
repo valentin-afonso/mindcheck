@@ -1,7 +1,6 @@
-import StarFull from "@/components/ui/svg/StarFull";
-import StarEmpty from "@/components/ui/svg/StarEmpty";
 import ItemActions from "@/app/ui/ItemActions";
 import FormCheckWithRadio from "@/app/ui/FormCheckWithRadio";
+import FormImportantWithIcon from "@/app/ui/FormImportantWithIcon";
 import { Todo } from "@/app/model/TodoModel";
 
 import {
@@ -15,8 +14,6 @@ import {
 } from "@/components/ui/dialog";
 
 export default function Item({ item, onCreate }: any) {
-  const IconStar =
-    item.important || item.important === "true" ? StarFull : StarEmpty;
   return (
     <Dialog>
       <div className="flex items-center justify-between w-full min-w-[450px]">
@@ -31,7 +28,7 @@ export default function Item({ item, onCreate }: any) {
         </div>
 
         <div className="flex items-center gap-3">
-          {IconStar && <IconStar />}
+          <FormImportantWithIcon item={item} onCreate={onCreate} />
           <ItemActions item={item} onCreate={onCreate} />
         </div>
       </div>
