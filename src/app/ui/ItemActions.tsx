@@ -2,6 +2,7 @@ import DeleteButton from "@/app/ui/DeleteButton";
 import DialogEditItem from "@/app/ui/DialogEditItem";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import FormImportant from "@/app/ui/FormImportant";
+import FormCheck from "@/app/ui/FormCheck";
 
 import {
   DropdownMenu,
@@ -30,7 +31,9 @@ export default function ItemActions({ item, onCreate }: any) {
             <DropdownMenuItem>
               <FormImportant item={item} onCreate={onCreate} />
             </DropdownMenuItem>
-            <DropdownMenuItem>Mark as completed</DropdownMenuItem>
+            <DropdownMenuItem>
+              <FormCheck item={item} onCreate={onCreate} />
+            </DropdownMenuItem>
             <DropdownMenuItem>
               <DeleteButton id={item.id} onCreate={onCreate} />
             </DropdownMenuItem>
