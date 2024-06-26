@@ -1,11 +1,11 @@
 import { updateTodo } from "@/app/actions";
+import RadioChecked from "@/components/ui/svg/RadioChecked";
+import RadioUnchecked from "@/components/ui/svg/RadioUnchecked";
 
-export default function FormCheck({ item, onCreate }: any) {
+export default function FormCheckWithRadio({ item, onCreate }: any) {
   const status_value = item.status === "1" || item.status === 1 ? 2 : 1;
-  let button_text =
-    item.status === "1" || item.status === 1
-      ? "Mark as completed"
-      : "Mark as to-do";
+  const IconRadio =
+    item.status === 1 || item.status === "1" ? RadioUnchecked : RadioChecked;
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function FormCheck({ item, onCreate }: any) {
       <input type="hidden" name="title" value={item.title} />
       <input type="hidden" name="desc" value={item.desc} />
       <input type="hidden" name="status" value={status_value} />
-      <button type="submit">{button_text}</button>
+      <button type="submit">{IconRadio && <IconRadio />}</button>
     </form>
   );
 }
