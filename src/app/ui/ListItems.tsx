@@ -13,7 +13,7 @@ import { Todo } from "@/app/model/TodoModel";
 import ListItemsClient from "@/app/ui/ListItemsClient";
 
 async function getData() {
-  const res = await fetch("https://mindcheck-afso.vercel.app/api/todos", {
+  const res = await fetch("http://localhost:3000/api/todos", {
     method: "GET",
     next: { tags: ["collection"] },
   });

@@ -16,10 +16,62 @@ export default function DialogNewItem({ onCreate }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+
+    try {
+      const todo = {
+        id: Date.now().toString(),
+        title: formData.get("title"),
+        desc: formData.get("desc"),
+        order: 1,
+        status: 1,
+        important: false,
+        date: new Date(),
+      };
+
+      if (typeof window !== "undefined") {
+        let localtodo = localStorage.getItem("todos");
+        if (localtodo) {
+          let localjson = JSON.parse(localtodo);
+          localjson.push(todo);
+          localStorage.setItem("todos", JSON.stringify(localjson));
+        } else {
+          const defaultTodos = [];
+          defaultTodos.push(todo);
+          localStorage.setItem("todos", JSON.stringify(defaultTodos));
+          // saveTodos();
+        }
+      }
+      /*
+      const response = await fetch("http://localhost:3000/api/todos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(todo),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create todo");
+      }
+    
+      const data = await response.json();
+      console.log("Todo created:", data);
+        */
+    } catch (err) {
+      console.error("Error creating todo:", err);
+    } finally {
+      // revalidateTag("collection");
+      if (onCreate) {
+        onCreate();
+      }
+    }
+
+    /*
     await createTodo(formData);
     if (onCreate) {
       onCreate();
     }
+      */
   };
   return (
     <Dialog>

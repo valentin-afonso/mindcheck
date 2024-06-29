@@ -23,6 +23,7 @@ export async function POST(request: Request) {
       important,
       date: new Date(),
     };
+    console.log(todo);
     addTodo(todo);
     return Response.json("todo create with success", {
       status: 201,
