@@ -31,7 +31,19 @@ export default function ListItemsClient() {
   };
 
   if (data === null) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <Command>
+          <CommandList>
+            <CommandEmpty>No tasks found.</CommandEmpty>
+            <CommandGroup heading="Important"></CommandGroup>
+            <CommandSeparator />
+            <CommandGroup heading="Tasks"></CommandGroup>
+          </CommandList>
+          <SearchBar onCreate={refreshData} />
+        </Command>
+      </>
+    );
   }
 
   return (
