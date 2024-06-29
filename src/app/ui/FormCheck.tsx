@@ -38,27 +38,28 @@ export default function FormCheck({ item, onCreate }: any) {
       const data = await response.json();
       console.log("Todo updated:", data);
       */
-      let localtodo = localStorage.getItem("todos");
-      if (localtodo) {
-        let localjson = JSON.parse(localtodo);
-        const todo_to_update = localjson.find(
-          (todo: Todo) => todo.id === item.id.toString()
-        );
-        if (todo_to_update) {
-          todo_to_update.title = item.title;
-          todo_to_update.desc = item.desc;
-          todo_to_update.order = item.order;
-          todo_to_update.status = status_value;
-          todo_to_update.important = item.important;
-          if (typeof window !== "undefined") {
+      if (typeof window !== "undefined") {
+        let localtodo = localStorage.getItem("todos");
+        if (localtodo) {
+          let localjson = JSON.parse(localtodo);
+          const todo_to_update = localjson.find(
+            (todo: Todo) => todo.id === item.id.toString()
+          );
+          if (todo_to_update) {
+            todo_to_update.title = item.title;
+            todo_to_update.desc = item.desc;
+            todo_to_update.order = item.order;
+            todo_to_update.status = status_value;
+            todo_to_update.important = item.important;
             localStorage.setItem("todos", JSON.stringify(localjson));
+
+            if (onCreate) {
+              onCreate();
+            }
+            // saveTodos();
+          } else {
+            throw new Error("No Todo found");
           }
-          if (onCreate) {
-            onCreate();
-          }
-          // saveTodos();
-        } else {
-          throw new Error("No Todo found");
         }
       }
     } catch (err) {

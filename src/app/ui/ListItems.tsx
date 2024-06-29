@@ -12,6 +12,7 @@ import SearchBar from "@/app/ui/SearchBar";
 import { Todo } from "@/app/model/TodoModel";
 import ListItemsClient from "@/app/ui/ListItemsClient";
 
+/*
 async function getData() {
   const res = await fetch("http://localhost:3000/api/todos", {
     method: "GET",
@@ -24,12 +25,13 @@ async function getData() {
 
   return res.json();
 }
+  */
 
 export default async function ListItems() {
-  const data = await getData();
+  // const data = await getData();
   return (
     <GridLayout size="boxed" additional_class="">
-      <ListItemsClient initialData={data} />
+      <ListItemsClient />
     </GridLayout>
   );
 }

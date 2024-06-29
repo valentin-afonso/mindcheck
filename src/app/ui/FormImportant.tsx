@@ -38,25 +38,26 @@ export default function FormImportant({ item, onCreate }: any) {
       const data = await response.json();
       console.log("Todo updated:", data);
       */
+      if (typeof window !== "undefined") {
+        let localtodo = localStorage.getItem("todos");
+        if (localtodo) {
+          let localjson = JSON.parse(localtodo);
+          const todo_to_update = localjson.find(
+            (todo: Todo) => todo.id === item.id.toString()
+          );
+          if (todo_to_update) {
+            todo_to_update.title = item.title;
+            todo_to_update.desc = item.desc;
+            todo_to_update.order = item.order;
+            todo_to_update.status = item.status;
+            todo_to_update.important = important_value;
 
-      let localtodo = localStorage.getItem("todos");
-      if (localtodo) {
-        let localjson = JSON.parse(localtodo);
-        const todo_to_update = localjson.find(
-          (todo: Todo) => todo.id === item.id.toString()
-        );
-        if (todo_to_update) {
-          todo_to_update.title = item.title;
-          todo_to_update.desc = item.desc;
-          todo_to_update.order = item.order;
-          todo_to_update.status = item.status;
-          todo_to_update.important = important_value;
-          if (typeof window !== "undefined") {
             localStorage.setItem("todos", JSON.stringify(localjson));
+
+            // saveTodos();
+          } else {
+            throw new Error("No Todo found");
           }
-          // saveTodos();
-        } else {
-          throw new Error("No Todo found");
         }
       }
     } catch (err) {
