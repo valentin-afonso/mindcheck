@@ -9,76 +9,24 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState } from "react";
-import { updateTodo } from "@/app/actions";
-import { Todo } from "@/app/model/TodoModel";
+import { useTodoForm } from "@/app/hooks/useTodoForm";
 
 export default function DialogEditItem({ item, onCreate }: any) {
+  const { updateItem } = useTodoForm(onCreate);
   const [title, setTitle] = useState(item.title);
   const [desc, setDesc] = useState(item.desc);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const updatedData = {
+      title,
+      desc,
+      order: item.order,
+      status: item.status,
+      important: item.important,
+    };
 
-    try {
-      /*
-      const id = formData.get("id");
-      const todo = {
-        title: formData.get("title"),
-        desc: formData.get("desc"),
-        order: formData.get("order"),
-        status: formData.get("status"),
-        important: formData.get("important"),
-      };
-      */
-      if (typeof window !== "undefined") {
-        let localtodo = localStorage.getItem("todos");
-        if (localtodo) {
-          let localjson = JSON.parse(localtodo);
-          const todo_to_update = localjson.find(
-            (todo: Todo) => todo.id === item.id.toString()
-          );
-          if (todo_to_update) {
-            todo_to_update.title = title;
-            todo_to_update.desc = desc;
-            todo_to_update.order = item.order;
-            todo_to_update.status = item.status;
-            todo_to_update.important = item.important;
-            localStorage.setItem("todos", JSON.stringify(localjson));
-            // saveTodos();
-          } else {
-            throw new Error("No Todo found");
-          }
-        }
-      }
-
-      /*
-      const response = await fetch(`http://localhost:3000/api/todos/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(todo),
-      });
-
-      if (!response.ok) {
-        const responseData = await response.json();
-        console.log(responseData.message);
-        throw new Error(responseData.message || "Failed to update todo");
-        // throw new Error("Failed to update todo");
-      }
-
-      const data = await response.json();
-      console.log("Todo updated:", data);
-      */
-    } catch (err) {
-      console.error("Error updating todo:", err);
-    } finally {
-      // await updateTodo(formData);
-      if (onCreate) {
-        onCreate();
-      }
-    }
+    updateItem(item, updatedData);
   };
   return (
     <form onSubmit={handleSubmit}>

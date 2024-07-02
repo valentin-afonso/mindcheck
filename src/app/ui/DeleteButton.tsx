@@ -1,29 +1,7 @@
-import { deleteTodo } from "@/app/actions";
-import { Todo } from "@/app/model/TodoModel";
+import { useTodoForm } from "@/app/hooks/useTodoForm";
 
 export default function DeleteButton({ id, onCreate }: any) {
-  const deleteItem = async () => {
-    if (typeof window !== "undefined") {
-      let localtodo = localStorage.getItem("todos");
-      if (localtodo) {
-        let localjson = JSON.parse(localtodo);
-        localjson = localjson.filter((todo: Todo) => todo.id !== id.toString());
-        localStorage.setItem("todos", JSON.stringify(localjson));
-        if (onCreate) {
-          onCreate();
-        }
+  const { deleteItem } = useTodoForm(onCreate);
 
-        // saveTodos();
-      }
-    }
-    // todos = todos.filter((todo) => todo.id !== id.toString());
-    /*
-    await deleteTodo(id);
-
-    if (onCreate) {
-      onCreate();
-    }
-      */
-  };
-  return <button onClick={() => deleteItem()}>Delete task</button>;
+  return <button onClick={() => deleteItem(id)}>Delete task</button>;
 }
