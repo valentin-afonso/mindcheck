@@ -2,15 +2,12 @@ import { useTodoForm } from "@/app/hooks/useTodoForm";
 
 export default function FormImportant({ item, onCreate }: any) {
   const { updateItem } = useTodoForm(onCreate);
-  const important_value = item.important === "true" ? "false" : "true";
+  const important_value = item.important === 1 ? 0 : 1;
   const button_text =
-    item.important === "true" || item.important
-      ? "Remove from important"
-      : "Mark as important";
+    item.important === 1 ? "Remove from important" : "Mark as important";
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const important_value = item.important === "true" ? "false" : "true";
 
     const updatedData = {
       title: item.title,

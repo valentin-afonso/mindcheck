@@ -6,13 +6,12 @@ import { useTodoForm } from "@/app/hooks/useTodoForm";
 
 export default function FormImportantWithIcon({ item, onCreate }: any) {
   const { updateItem } = useTodoForm(onCreate);
-  const important_value = item.important === "true" ? "false" : "true";
+  const important_value = item.important === 1 ? 0 : 1;
   const IconStar =
-    item.important || item.important === "true" ? StarFull : StarEmpty;
+    item.important || item.important === 1 ? StarFull : StarEmpty;
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const important_value = item.important === "true" ? "false" : "true";
     const updatedData = {
       title: item.title,
       desc: item.desc,

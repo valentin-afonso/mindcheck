@@ -6,13 +6,11 @@ import { useTodoForm } from "@/app/hooks/useTodoForm";
 
 export default function FormCheckWithRadio({ item, onCreate }: any) {
   const { updateItem } = useTodoForm(onCreate);
-  const status_value = item.status === "1" || item.status === 1 ? 2 : 1;
-  const IconRadio =
-    item.status === 1 || item.status === "1" ? RadioUnchecked : RadioChecked;
+  const status_value = item.status === 1 ? 2 : 1;
+  const IconRadio = item.status === 1 ? RadioUnchecked : RadioChecked;
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const status_value = item.status === "1" || item.status === 1 ? 2 : 1;
     const updatedData = {
       title: item.title,
       desc: item.desc,

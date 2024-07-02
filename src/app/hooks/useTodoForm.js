@@ -20,7 +20,7 @@ export const useTodoForm = (onCreate) => {
       desc: formData.desc,
       order: 1,
       status: 1,
-      important: false,
+      important: 0,
       date: new Date(),
     };
 

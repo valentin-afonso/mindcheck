@@ -2,15 +2,11 @@ import { useTodoForm } from "@/app/hooks/useTodoForm";
 
 export default function FormCheck({ item, onCreate }: any) {
   const { updateItem } = useTodoForm(onCreate);
-  const status_value = item.status === "1" || item.status === 1 ? 2 : 1;
-  let button_text =
-    item.status === "1" || item.status === 1
-      ? "Mark as completed"
-      : "Mark as to-do";
+  const status_value = item.status === 1 ? 2 : 1;
+  let button_text = item.status === 1 ? "Mark as completed" : "Mark as to-do";
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const status_value = item.status === "1" || item.status === 1 ? 2 : 1;
     const updatedData = {
       title: item.title,
       desc: item.desc,

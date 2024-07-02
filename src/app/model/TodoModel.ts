@@ -4,6 +4,6 @@ export interface Todo {
   desc: string;
   order: number;
   status: number;
-  important: boolean;
+  important: number;
   date: Date;
 }
