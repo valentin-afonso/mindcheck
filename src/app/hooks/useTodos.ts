@@ -11,6 +11,11 @@ export const useTodos = () => {
     }
   };
 
+  const saveTodos = (updatedTodos: Todo[]) => {
+    setTodos(updatedTodos);
+    window.localStorage.setItem("todos", JSON.stringify(updatedTodos));
+  };
+
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -18,5 +23,6 @@ export const useTodos = () => {
   return {
     todos,
     refreshTodos: fetchTodos,
+    saveTodos,
   };
 };

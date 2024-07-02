@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import {
   Command,
   CommandEmpty,
@@ -13,9 +12,25 @@ import Item from "@/app/ui/Item";
 import SearchBar from "@/app/ui/SearchBar";
 import { Todo } from "@/app/model/TodoModel";
 import { useTodos } from "@/app/hooks/useTodos";
+import { Reorder } from "framer-motion";
 
 export default function ListItemsClient() {
-  const { todos, refreshTodos } = useTodos();
+  const { todos, refreshTodos, saveTodos } = useTodos();
+
+  const handleReorder = (
+    updatedTodos: Todo[],
+    type: "important" | "regular"
+  ) => {
+    if (type === "important") {
+      const regularTodos = todos?.filter((item: Todo) => !item.important) || [];
+      saveTodos([...updatedTodos, ...regularTodos]);
+    } else {
+      const importantTodos =
+        todos?.filter((item: Todo) => item.important) || [];
+      saveTodos([...importantTodos, ...updatedTodos]);
+    }
+  };
+
   if (todos === null) {
     return (
       <>
@@ -32,33 +47,44 @@ export default function ListItemsClient() {
     );
   }
 
+  const importantTodos = todos.filter((item: Todo) => item.important);
+  const regularTodos = todos.filter((item: Todo) => !item.important);
+
   return (
     <>
       <Command>
         <CommandList>
           <CommandEmpty>No tasks found.</CommandEmpty>
           <CommandGroup heading="Important">
-            {todos
-              .filter((item: Todo) => item.important)
-              .map((item: Todo) => (
-                <div key={item.id}>
+            <Reorder.Group
+              axis="y"
+              values={importantTodos}
+              onReorder={(set) => handleReorder(set, "important")}
+            >
+              {importantTodos.map((item: Todo) => (
+                <Reorder.Item key={item.id} value={item}>
                   <CommandItem>
                     <Item item={item} onCreate={refreshTodos} />
                   </CommandItem>
-                </div>
+                </Reorder.Item>
               ))}
+            </Reorder.Group>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Tasks">
-            {todos
-              .filter((item: Todo) => !item.important)
-              .map((item: Todo) => (
-                <div key={item.id}>
+            <Reorder.Group
+              axis="y"
+              values={regularTodos}
+              onReorder={(set) => handleReorder(set, "regular")}
+            >
+              {regularTodos.map((item: Todo) => (
+                <Reorder.Item key={item.id} value={item}>
                   <CommandItem>
                     <Item item={item} onCreate={refreshTodos} />
                   </CommandItem>
-                </div>
+                </Reorder.Item>
               ))}
+            </Reorder.Group>
           </CommandGroup>
         </CommandList>
         <SearchBar onCreate={refreshTodos} />
