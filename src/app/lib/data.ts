@@ -62,7 +62,7 @@ export const updateTodo = (
   desc: string,
   order: number,
   status: number,
-  important: boolean
+  important: number
 ) => {
   const todo = todos.find((todo) => todo.id === id.toString());
 
