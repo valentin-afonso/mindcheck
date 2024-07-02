@@ -12,25 +12,11 @@ import {
 import Item from "@/app/ui/Item";
 import SearchBar from "@/app/ui/SearchBar";
 import { Todo } from "@/app/model/TodoModel";
+import { useTodos } from "@/app/hooks/useTodos";
 
 export default function ListItemsClient() {
-  const [data, setData] = useState<Todo[] | null>(null);
-
-  useEffect(() => {
-    const sessionData = window.localStorage.getItem("todos");
-    if (sessionData) {
-      setData(JSON.parse(sessionData));
-    }
-  }, []);
-
-  const refreshData = () => {
-    const sessionData = window.localStorage.getItem("todos");
-    if (sessionData) {
-      setData(JSON.parse(sessionData));
-    }
-  };
-
-  if (data === null) {
+  const { todos, refreshTodos } = useTodos();
+  if (todos === null) {
     return (
       <>
         <Command>
@@ -40,7 +26,7 @@ export default function ListItemsClient() {
             <CommandSeparator />
             <CommandGroup heading="Tasks"></CommandGroup>
           </CommandList>
-          <SearchBar onCreate={refreshData} />
+          <SearchBar onCreate={refreshTodos} />
         </Command>
       </>
     );
@@ -52,30 +38,30 @@ export default function ListItemsClient() {
         <CommandList>
           <CommandEmpty>No tasks found.</CommandEmpty>
           <CommandGroup heading="Important">
-            {data
+            {todos
               .filter((item: Todo) => item.important)
               .map((item: Todo) => (
                 <div key={item.id}>
                   <CommandItem>
-                    <Item item={item} onCreate={refreshData} />
+                    <Item item={item} onCreate={refreshTodos} />
                   </CommandItem>
                 </div>
               ))}
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Tasks">
-            {data
+            {todos
               .filter((item: Todo) => !item.important)
               .map((item: Todo) => (
                 <div key={item.id}>
                   <CommandItem>
-                    <Item item={item} onCreate={refreshData} />
+                    <Item item={item} onCreate={refreshTodos} />
                   </CommandItem>
                 </div>
               ))}
           </CommandGroup>
         </CommandList>
-        <SearchBar onCreate={refreshData} />
+        <SearchBar onCreate={refreshTodos} />
       </Command>
     </>
   );
