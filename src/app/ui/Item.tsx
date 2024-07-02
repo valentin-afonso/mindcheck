@@ -1,7 +1,7 @@
 import ItemActions from "@/app/ui/ItemActions";
 import FormCheckWithRadio from "@/app/ui/FormCheckWithRadio";
 import FormImportantWithIcon from "@/app/ui/FormImportantWithIcon";
-import { Todo } from "@/app/model/TodoModel";
+import LibelleDate from "@/app/ui/LibelleDate";
 
 import {
   Dialog,
@@ -22,7 +22,7 @@ export default function Item({ item, onCreate }: any) {
           <DialogTrigger asChild>
             <div className="flex w-full justify-between pr-3">
               <p>{item.title}</p>
-              <p>today</p>
+              <LibelleDate date={item.date} />
             </div>
           </DialogTrigger>
         </div>
