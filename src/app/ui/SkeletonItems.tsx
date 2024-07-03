@@ -14,7 +14,6 @@ export default function SkeletonItems() {
     <div>
       <Command>
         <CommandList>
-          <CommandEmpty>No tasks found.</CommandEmpty>
           <CommandGroup heading="Important">
             <div className="flex gap-2 flex-col">
               <Skeleton className="w-[468px] h-[35px] rounded-sm" />
