@@ -13,6 +13,7 @@ import SearchBar from "@/app/ui/SearchBar";
 import { Todo } from "@/app/model/TodoModel";
 import { useTodos } from "@/app/hooks/useTodos";
 import { Reorder } from "framer-motion";
+import SkeletonItems from "@/app/ui/SkeletonItems";
 
 export default function ListItemsClient() {
   const { todos, refreshTodos, saveTodos } = useTodos();
@@ -34,15 +35,7 @@ export default function ListItemsClient() {
   if (todos === null) {
     return (
       <>
-        <Command>
-          <CommandList>
-            <CommandEmpty>No tasks found.</CommandEmpty>
-            <CommandGroup heading="Important"></CommandGroup>
-            <CommandSeparator />
-            <CommandGroup heading="Tasks"></CommandGroup>
-          </CommandList>
-          <SearchBar onCreate={refreshTodos} />
-        </Command>
+        <SkeletonItems />
       </>
     );
   }
