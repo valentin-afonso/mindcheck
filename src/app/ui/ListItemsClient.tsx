@@ -62,11 +62,9 @@ export default function ListItemsClient() {
               onReorder={(set) => handleReorder(set, "important")}
             >
               {importantTodos.map((item: Todo) => (
-                <Reorder.Item key={item.id} value={item}>
-                  <CommandItem>
-                    <Item item={item} onCreate={refreshTodos} />
-                  </CommandItem>
-                </Reorder.Item>
+                <CommandItem key={item.id}>
+                  <Item item={item} onCreate={refreshTodos} />
+                </CommandItem>
               ))}
             </Reorder.Group>
           </CommandGroup>
@@ -78,11 +76,9 @@ export default function ListItemsClient() {
               onReorder={(set) => handleReorder(set, "regular")}
             >
               {regularTodos.map((item: Todo) => (
-                <Reorder.Item key={item.id} value={item}>
-                  <CommandItem>
-                    <Item item={item} onCreate={refreshTodos} />
-                  </CommandItem>
-                </Reorder.Item>
+                <CommandItem key={item.id}>
+                  <Item item={item} onCreate={refreshTodos} />
+                </CommandItem>
               ))}
             </Reorder.Group>
           </CommandGroup>
