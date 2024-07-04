@@ -35,7 +35,7 @@ export default function ListItemsClient() {
   if (todos === null) {
     return (
       <>
-        <SkeletonItems />
+        <SkeletonItems onCreate={refreshTodos} />
       </>
     );
   }

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/command";
 import SearchBar from "@/app/ui/SearchBar";
 
-export default function SkeletonItems() {
+export default function SkeletonItems({ onCreate }: any) {
   return (
     <div>
       <Command>
@@ -32,6 +32,7 @@ export default function SkeletonItems() {
             </div>
           </CommandGroup>
         </CommandList>
+        <SearchBar onCreate={onCreate} />
       </Command>
     </div>
   );
