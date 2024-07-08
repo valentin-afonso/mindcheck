@@ -17,7 +17,9 @@ export default function DialogNewItem({ onCreate }: any) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add</Button>
+        <Button variant="outline" className="h-11">
+          Add
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={handleSubmit}>
