@@ -1,4 +1,5 @@
 import { useTodoForm } from "@/app/hooks/useTodoForm";
+import AcionsChecked from "@/components/ui/svg/AcionsChecked";
 
 export default function FormCheck({ item, onCreate }: any) {
   const { updateItem } = useTodoForm(onCreate);
@@ -18,14 +19,20 @@ export default function FormCheck({ item, onCreate }: any) {
     updateItem(item, updatedData);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex-grow">
       <input type="hidden" name="id" value={item.id} />
       <input type="hidden" name="order" value={item.order} />
       <input type="hidden" name="important" value={item.important} />
       <input type="hidden" name="title" value={item.title} />
       <input type="hidden" name="desc" value={item.desc} />
       <input type="hidden" name="status" value={status_value} />
-      <button type="submit">{button_text}</button>
+      <button
+        type="submit"
+        className="flex items-center gap-2 w-full flex-grow"
+      >
+        <AcionsChecked />
+        {button_text}
+      </button>
     </form>
   );
 }

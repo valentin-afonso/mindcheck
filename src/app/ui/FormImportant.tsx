@@ -1,4 +1,5 @@
 import { useTodoForm } from "@/app/hooks/useTodoForm";
+import ActionsImportant from "@/components/ui/svg/ActionsImportant";
 
 export default function FormImportant({ item, onCreate }: any) {
   const { updateItem } = useTodoForm(onCreate);
@@ -20,14 +21,17 @@ export default function FormImportant({ item, onCreate }: any) {
     updateItem(item, updatedData);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex-grow">
       <input type="hidden" name="id" value={item.id} />
       <input type="hidden" name="order" value={item.order} />
       <input type="hidden" name="status" value={item.status} />
       <input type="hidden" name="title" value={item.title} />
       <input type="hidden" name="desc" value={item.desc} />
       <input type="hidden" name="important" value={important_value} />
-      <button type="submit">{button_text}</button>
+      <button type="submit" className="flex items-center gap-2">
+        <ActionsImportant />
+        <span className="flex-grow">{button_text}</span>
+      </button>
     </form>
   );
 }

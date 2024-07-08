@@ -11,7 +11,7 @@ export default function page() {
     <GridLayout size="boxed" additional_class="">
       <div className="flex min-h-screen flex-col items-center justify-center p-24">
         <h1 className="mb-4">About</h1>
-        <p className="text-center">
+        <p className="text-center text-black/80">
           <strong>Welcome to Mindcheck !</strong>
           <br />A todolist application developed with NextJs, designed for both
           profit and experimental purposes. It offers a simple and clean

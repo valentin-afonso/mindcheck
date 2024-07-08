@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import Dots from "@/components/ui/svg/Dots";
+import ActionsUpdate from "@/components/ui/svg/ActionsUpdate";
 
 export default function ItemActions({ item, onCreate }: any) {
   return (
@@ -26,7 +27,10 @@ export default function ItemActions({ item, onCreate }: any) {
         <DropdownMenuContent className="w-max">
           <DropdownMenuGroup>
             <DialogTrigger asChild>
-              <DropdownMenuItem>Edit task</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer gap-2 items-center">
+                <ActionsUpdate />
+                <p className="leading-none">Edit task</p>
+              </DropdownMenuItem>
             </DialogTrigger>
             <DropdownMenuItem>
               <FormImportant item={item} onCreate={onCreate} />
@@ -34,7 +38,7 @@ export default function ItemActions({ item, onCreate }: any) {
             <DropdownMenuItem>
               <FormCheck item={item} onCreate={onCreate} />
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-red-100 focus:text-red-800">
               <DeleteButton id={item.id} onCreate={onCreate} />
             </DropdownMenuItem>
           </DropdownMenuGroup>

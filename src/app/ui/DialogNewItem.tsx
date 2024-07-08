@@ -11,14 +11,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTodoForm } from "@/app/hooks/useTodoForm";
+import Plus from "@/components/ui/svg/Plus";
 
 export default function DialogNewItem({ onCreate }: any) {
   const { formData, handleChange, handleSubmit } = useTodoForm(onCreate);
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="h-11">
-          Add
+        <Button variant="outline" className="flex items-center gap-2 h-11">
+          <Plus /> Add
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
