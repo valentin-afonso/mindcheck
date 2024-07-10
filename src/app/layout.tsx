@@ -8,6 +8,31 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Mindcheck",
   description: "Mindcheck is a todolist app",
+  openGraph: {
+    title: "Welcome on Mindcheck !",
+    description: "Your future favorite todo app.",
+    type: "article",
+    url: "https://mindcheck-afso.vercel.app/",
+    images: [
+      {
+        url: "https://mindcheck-afso.vercel.app/twitter-image.jpg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Welcome on Mindcheck !",
+    description: "Your future favorite todo app.",
+    creator: "@valentinafso",
+    images: [
+      {
+        url: "https://mindcheck-afso.vercel.app/twitter-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "cover mindcheck",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
