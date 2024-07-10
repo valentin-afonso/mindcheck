@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="fixed w-full top-0 max-w-[100vw]">
       <GridLayout size="boxed" additional_class="">
-        <div className="flex justify-between items-center py-2 max-md:px-4">
+        <div className="flex justify-between items-center py-2 ">
           <Logo />
           <div className="flex items-center gap-6">
             <MainNav />

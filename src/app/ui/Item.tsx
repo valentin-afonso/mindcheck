@@ -26,10 +26,10 @@ export default function Item({ item, onCreate }: any) {
       style={{ boxShadow, y }}
       dragListener={false}
       dragControls={dragControls}
-      className="px-2 py-1.5 rounded-sm bg-slate-50"
+      className="px-2 py-1.5 rounded-sm bg-slate-50 flex-grow"
     >
       <Dialog>
-        <div className="flex items-center justify-between w-full min-w-[450px]">
+        <div className="flex items-center justify-between w-full min-w-full md:min-w-[450px]">
           <div className="flex gap-2 items-center w-full">
             <FormCheckWithRadio item={item} onCreate={onCreate} />
             <DialogTrigger asChild>

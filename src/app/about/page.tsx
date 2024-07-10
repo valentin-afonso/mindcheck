@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <GridLayout size="boxed" additional_class="">
-      <div className="flex h-screen max-h-screen flex-col justify-between items-end p-24 pb-0">
-        <div className="flex flex-col justify-center gap-4 pt-20">
+      <div className="flex h-screen max-h-screen flex-col justify-between items-end p-0 lg:p-24 lg:pb-0 pb-0">
+        <div className="flex flex-col justify-center gap-4 pt-32 lg:pt-8">
           <p className="text-center">
             <strong>Welcome to Mindcheck !</strong>
           </p>
-          <p className="text-center text-black/80">
+          <p className="text-xs sm:text-base text-center text-black/80 lg:max-w-full max-w-3xl">
             A todolist application developed with NextJs, designed for both
             profit and experimental purposes. It offers a simple and clean
             interface for easy task management. Users can sort tasks by
