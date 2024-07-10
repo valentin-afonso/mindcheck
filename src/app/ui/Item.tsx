@@ -26,7 +26,7 @@ export default function Item({ item, onCreate }: any) {
       style={{ boxShadow, y }}
       dragListener={false}
       dragControls={dragControls}
-      className="px-2 py-1.5 rounded-sm bg-white"
+      className="px-2 py-1.5 rounded-sm bg-slate-50"
     >
       <Dialog>
         <div className="flex items-center justify-between w-full min-w-[450px]">
