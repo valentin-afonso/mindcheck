@@ -5,6 +5,7 @@ import LibelleDate from "@/app/ui/LibelleDate";
 import { Reorder, useDragControls, useMotionValue } from "framer-motion";
 import { useRaisedShadow } from "@/app/hooks/useRaisedShadow";
 import ReorderIcon from "@/components/ui/svg/ReorderIcon";
+import useFormattedDate from "@/app/hooks/useFormattedDate";
 
 import {
   Dialog,
@@ -20,6 +21,7 @@ export default function Item({ item, onCreate }: any) {
   const y = useMotionValue(0);
   const boxShadow = useRaisedShadow(y);
   const dragControls = useDragControls();
+  const formattedDate = useFormattedDate(item.date);
   return (
     <Reorder.Item
       value={item}
@@ -54,7 +56,7 @@ export default function Item({ item, onCreate }: any) {
           </DialogHeader>
           <DialogDescription>{item.desc}</DialogDescription>
           <DialogFooter>
-            <p>{item.date}</p>
+            <p>{formattedDate}</p>
           </DialogFooter>
         </DialogContent>
       </Dialog>
